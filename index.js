@@ -1,3 +1,4 @@
+const Puppeteer = require('puppeteer');
 function helloWorld() {
 	console.log('Hello World!');
 }
@@ -13,5 +14,6 @@ function doSomethingElse() {
 module.exports = {
 	helloWorld: helloWorld,
 	doSomethingAwesome: doSomethingAwesome,
-	doSomethingElse: doSomethingElse
+	doSomethingElse: doSomethingElse,
+	puppeteer:Puppeteer
 }

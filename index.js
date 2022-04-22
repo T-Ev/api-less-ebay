@@ -9,6 +9,7 @@ module.exports = {
 		"For Parts or Not Working":7000
 	},
 	browser:null,
+	version:1,
 	init: async function(){
 		this.browser = await Puppeteer.launch({
 			args: ['--no-sandbox', '--disable-setuid-sandbox','--disable-gpu'],

@@ -9,7 +9,7 @@ module.exports = {
 		"For Parts or Not Working":7000
 	},
 	browser:null,
-	version:4,
+	version:5,
 	init: async function(){
 		this.browser = await puppeteer.launch({
 			args: ['--no-sandbox', '--disable-setuid-sandbox','--disable-gpu'],
@@ -44,10 +44,12 @@ module.exports = {
 		 await page.waitForTimeout(5000);
 		 //click most recommended item
 		 await page.screenshot({ path: 'public/rec.png' });
-		 await page.click('.product-button:first-of-type');
+		 const prods = await page.$$('.product-button');
+		 await prods[0].click();
 		 await page.waitForTimeout(1000);
 		 //select condition
 		 await page.click('input[value='+module.exports.conditions[condition]+']');
+		 await page.screenshot({ path: 'public/qua.png' });
 		 //navigate to full listing
 		 await page.waitForTimeout(1000);
 		 await page.click('.condition-dialog-radix__continue-btn');

@@ -9,7 +9,7 @@ module.exports = {
 		"For Parts or Not Working":7000
 	},
 	browser:null,
-	version:7,
+	version:8,
 	init: async function(){
 		this.browser = await puppeteer.launch({
 			args: ['--no-sandbox', '--disable-setuid-sandbox','--disable-gpu'],
@@ -17,7 +17,7 @@ module.exports = {
 		});
 	},
 	end: async function(){
-		await browser.close();
+		await this.browser.close();
 	},
 	getKey: async function(){
 		console.log("getting key")
@@ -27,7 +27,7 @@ module.exports = {
 
 		}
 	},
-	listItem: async function(query, condition){	
+	listItem: async function(auth, query, condition){	
 		console.log(query)	
 		const page = await this.browser.newPage();
 		await page.goto('https://www.ebay.com/sl/prelist/suggest', {
@@ -49,17 +49,28 @@ module.exports = {
 		 	await prods[0].click();
 		 await page.waitForTimeout(1000);
 		 //select condition
+		 console.log("selecting condition")
 		 await page.click('input[value="'+module.exports.conditions[condition]+'"]');
 		 await page.screenshot({ path: 'public/qua.png' });
 		 //navigate to full listing
 		 await page.waitForTimeout(1000);
 		 await page.click('.condition-dialog-radix__continue-btn');
-		 
+		 await page.waitForTimeout(3000);
+		 console.log("logging in");
+		 //logging in
+		 await page.type('#userid', auth.email)
+		 await page.screenshot({ path: 'public/sin.png' });
+		 await page.click('#signin-continue-btn');
+		 await page.waitForTimeout(1000);
+		 await page.type('#pass', auth.pass)
+		 await page.click('#sgnBt');
+		 await page.waitForTimeout(1000);
 		 //await page.type('.product-button:first-of-type', 'Toronto, ON');
 		 //add photos
 		 //
 		await page.waitForTimeout(5000); // wait for 5 seconds
 		await page.screenshot({ path: 'public/example.png' });
+		console.log("complete");
 		return true;
 
 	},

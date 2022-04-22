@@ -1,4 +1,4 @@
-import Puppeteer from 'puppeteer'
+import puppeteer from 'puppeteer'
 import fetch from 'node-fetch'
 
 module.exports = {
@@ -11,7 +11,7 @@ module.exports = {
 	browser:null,
 	version:1,
 	init: async function(){
-		this.browser = await Puppeteer.launch({
+		this.browser = await puppeteer.launch({
 			args: ['--no-sandbox', '--disable-setuid-sandbox','--disable-gpu'],
 			dumpio: true
 		});
@@ -67,5 +67,5 @@ module.exports = {
 			throw new Error("Invalid UPC")
 		}
 	},
-	puppeteer:Puppeteer
+	puppeteer:puppeteer
 }

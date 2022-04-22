@@ -13,6 +13,7 @@
     "simple",
     "beginners"
   ],
+  "type": "module",
   "dependencies": {
     "puppeteer": "^13.5.2",
     "node-fetch":"^3.2.3"

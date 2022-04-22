@@ -1,5 +1,5 @@
-import puppeteer from 'puppeteer'
-import fetch from 'node-fetch'
+const puppeteer =require('puppeteer')
+const fetch =require('node-fetch')
 
 module.exports = {
 	conditions:{

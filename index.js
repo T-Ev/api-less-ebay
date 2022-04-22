@@ -59,10 +59,14 @@ module.exports = {
 		 console.log("logging in");
 		 //logging in
 		 await page.screenshot({ path: 'public/sin.png' });
-		 await page.type('#userid', auth.email)		 
-		 await page.click('#signin-continue-btn');
+		 await page.type('#userid', auth.email);
 		 await page.waitForTimeout(1000);
-		 await page.type('#pass', auth.pass)
+		 await page.screenshot({ path: 'public/sin2.png' });	 
+		 await page.click('#signin-continue-btn');
+		 await page.waitForTimeout(2000);
+		 console.log("password");
+		 await page.type('#pass', auth.pass);
+		 await page.waitForTimeout(1000);
 		 await page.click('#sgnBt');
 		 await page.waitForTimeout(1000);
 		 //await page.type('.product-button:first-of-type', 'Toronto, ON');

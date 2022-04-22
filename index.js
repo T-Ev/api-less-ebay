@@ -9,7 +9,7 @@ module.exports = {
 		"For Parts or Not Working":7000
 	},
 	browser:null,
-	version:5,
+	version:6,
 	init: async function(){
 		this.browser = await puppeteer.launch({
 			args: ['--no-sandbox', '--disable-setuid-sandbox','--disable-gpu'],
@@ -40,12 +40,13 @@ module.exports = {
 		 await page.type('#s0-0-0-22-11-keyword-box-input-textbox', query);
 		 await page.screenshot({ path: 'public/pre.png' });
 		 console.log("clicking button")	
-		 await page.click('button[data-ebayui]');
+		 await page.click('button.keyword-suggestion__button');
 		 await page.waitForTimeout(5000);
 		 //click most recommended item
 		 await page.screenshot({ path: 'public/rec.png' });
 		 const prods = await page.$$('.product-button');
-		 await prods[0].click();
+		 if(prods.length>0)
+		 	await prods[0].click();
 		 await page.waitForTimeout(1000);
 		 //select condition
 		 await page.click('input[value='+module.exports.conditions[condition]+']');

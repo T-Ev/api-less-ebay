@@ -9,7 +9,7 @@ module.exports = {
 		"For Parts or Not Working":7000
 	},
 	browser:null,
-	version:8,
+	version:9,
 	init: async function(){
 		this.browser = await puppeteer.launch({
 			args: ['--no-sandbox', '--disable-setuid-sandbox','--disable-gpu'],
@@ -55,11 +55,11 @@ module.exports = {
 		 //navigate to full listing
 		 await page.waitForTimeout(1000);
 		 await page.click('.condition-dialog-radix__continue-btn');
-		 await page.waitForTimeout(3000);
+		 await page.waitForTimeout(5000);
 		 console.log("logging in");
 		 //logging in
-		 await page.type('#userid', auth.email)
 		 await page.screenshot({ path: 'public/sin.png' });
+		 await page.type('#userid', auth.email)		 
 		 await page.click('#signin-continue-btn');
 		 await page.waitForTimeout(1000);
 		 await page.type('#pass', auth.pass)

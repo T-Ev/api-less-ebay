@@ -9,7 +9,7 @@ module.exports = {
 		"For Parts or Not Working":7000
 	},
 	browser:null,
-	version:1,
+	version:3,
 	init: async function(){
 		this.browser = await puppeteer.launch({
 			args: ['--no-sandbox', '--disable-setuid-sandbox','--disable-gpu'],
@@ -27,14 +27,18 @@ module.exports = {
 
 		}
 	},
-	listItem: async function(query, condition){		
+	listItem: async function(query, condition){	
+		console.log(query)	
 		const page = await this.browser.newPage();
 		await page.goto('https://www.ebay.com/sl/prelist/suggest', {
 		waitUntil: 'networkidle0',
 	  });
 		//finish prelist prompt
 		await page.screenshot({ path: 'public/pre.png' });
-		 await page.type('#s0-0-0-22-11-keyword-box-input-textbox', query);		
+		const html = await page.$eval('.se-search-box', (e) => e.outerHTML);
+		console.log(html)
+		 await page.type('#s0-0-0-22-11-keyword-box-input-textbox', query);
+		 console.log("clicking button")	
 		 await page.click('button[data-ebayui]');
 		 await page.waitForTimeout(5000);
 		 //click most recommended item

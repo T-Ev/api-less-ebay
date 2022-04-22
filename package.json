@@ -1,6 +1,6 @@
 {
   "name": "api-less-ebay",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Node package for handling api-less listings on ebay using puppeteer",
   "main": "index.js",
   "scripts": {
